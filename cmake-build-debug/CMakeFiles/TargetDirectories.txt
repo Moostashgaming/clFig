@@ -1,0 +1,3 @@
+/home/pyro/Projects/clFig/cmake-build-debug/CMakeFiles/clFig.dir
+/home/pyro/Projects/clFig/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/pyro/Projects/clFig/cmake-build-debug/CMakeFiles/rebuild_cache.dir
