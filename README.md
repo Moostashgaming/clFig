@@ -1,25 +1,20 @@
 # clFig
 
-A tool to collect user configuration preferences and store them, all on the command line. <br>
-This really should only be used for simple config schemes (The current design goal) where the program is taking in a few simple values <br>
-This could either be used in place of flags or for easy flag persistance. <br>
-Mostly this isn't all that useful but it uses a novel way of storing configs that's optimized to be as tiny as possible.
+A tool to make configuration easy by providing both an assist and interactive mode to create configs. <br>
 
+### Usage (Once actually functional)
+#### Interactive Mode:
 
-### Cloning & Building (and installing)
-```bash
-# Using a git client:
-git clone https://github.com/moostashgaming/clFig
+Using the program in interactive mode is quite easy. <br>
+Simply run the program and answer the questions given to you.
 
-# Using GitHub CLI:
-gh repo clone moostashgaming/clFig
+#### Assist Mode:
 
-cd clFig
-sh runfile
-
-```
+Usage in assist mode is a little more complicated, yet still relatively simple. <br>
+Upon running the program you will be met with a text editor, with options for configuration displayed above your cursor. <br>
+The program will in essence walk you through how to write your config, showing you each possible option at every step. <br>
 
 ### Coming Soon
 
 - A working program
-- More complex config options
+- More complexity (Adding support for logic, etc.)

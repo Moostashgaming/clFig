@@ -3,6 +3,6 @@ project(clFig C)
 set(CMAKE_C_STANDARD 11)
 
 add_executable(clFig
-    main.c
-        parser.c
+    src/main.c
+        src/parser.c
 )
