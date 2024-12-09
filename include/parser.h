@@ -2,7 +2,7 @@
 #define PARSER_H
 #include <argp.h>
 
-enum flag { INTERACTIVE, ASSIST, SPECIFYCONF, DEFAULTCONF };
+enum flags { INTERACTIVE, ASSIST, SPECIFYCONF, DEFAULTCONF };
 
 /**
  * A collection of all the data from flags specified by the user
@@ -12,7 +12,7 @@ struct flag_data
     /**
      * Flags we got from parsing, may be null (Make sure to check)
      */
-    enum flag ** flags;
+    enum flags * flags;
 
     /**
      * The specified config path
