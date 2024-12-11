@@ -5,6 +5,16 @@
 #include <unistd.h>
 
 /**
+ * Free everything and exit the program
+ */
+
+// TODO: Finish
+void die(const int status)
+{
+    _exit(status);
+}
+
+/**
  * Allocates memory to a pointer ptr of size size
  * @param ptr The pointer to pass in. If zero a new block is allocated
  * @return The pointer to the newly allocated block
