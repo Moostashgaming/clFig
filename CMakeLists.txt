@@ -4,8 +4,8 @@ set(CMAKE_C_STANDARD 11)
 
 add_executable(clFig
     src/main.c
-        src/flparser.c
+        src/argparser.c
         src/utils.c
-        include/flparser.h
+        include/argparser.h
         include/utils.h
 )

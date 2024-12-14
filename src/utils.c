@@ -1,4 +1,5 @@
 #include "../include/utils.h"
+#include "../include/argparser.h"
 
 #include <stddef.h>
 #include <stdlib.h>
@@ -8,9 +9,14 @@
  * Free everything and exit the program
  */
 
-// TODO: Finish
 void die(const int status)
 {
+    // Free flag data struct
+    free(data.conf_path);
+    free(data.flags);
+    free(&data.exec_mode);
+    free(&data);
+
     _exit(status);
 }
 

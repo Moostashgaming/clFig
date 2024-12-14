@@ -1,4 +1,4 @@
-#include "../include/flparser.h"
+#include "../include/argparser.h"
 #include "../include/utils.h"
 
 #include <argp.h>
@@ -87,8 +87,8 @@ static const struct argp_option argp_opts[] =
     {0, ARGP_HELP_PRE_DOC, 0, 0, "\rMultiple Command entries will result in only the last command taking action.", 1},
 
     {0, ARGP_HELP_PRE_DOC, 0, 0, "\n\rList of available flags:\n", 2},
-    {"specify-config", SPECIFYCONF_FLAG, "config", 0, "Specify a path to the config file.", 2},
-    {"create-default-config", DEFAULTCONF_FLAG, 0, 0, "Creates a default configuration.", 2},
+    {"specify-config", SPECIFYCONF_FLAG, "path", 0, "Specify a path to the config file. Default is whatever directory the user is in on runtime under the name .fig for program config, and .ufig for user config.", 2},
+    {"create-default-config", DEFAULTCONF_FLAG, "path", OPTION_ARG_OPTIONAL, "Creates a default configuration at PATH if specified. Otherwise create a default config wherever the user is.", 2},
     {0}
 };
 
