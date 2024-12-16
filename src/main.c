@@ -6,6 +6,7 @@
 #include <string.h>
 #include <unistd.h>
 #include <errno.h>
+#include <stdlib.h>
 
 int main(int argc, char* argv[])
 {
@@ -13,10 +14,8 @@ int main(int argc, char* argv[])
 
     puts("Welcome to clFig!");
 
-    char* tmp = ".fig";
     char* cwd = getcwd(NULL, 0);
 
-    unsigned int res;
     int fd;
 
     switch (data.exec_mode)
@@ -25,33 +24,37 @@ int main(int argc, char* argv[])
         puts("Running in Interactive Mode!");
 
         // Allocate space for end of path and add it to the cwd
-        alloc_mem(cwd, (strlen(tmp) + 1) * sizeof(char));
-        mempcpy(cwd, tmp, strlen(tmp));
+        const unsigned char len = strlen(cwd);
+        cwd = alloc_mem(cwd, (len * sizeof(char))  + (6 * sizeof(char)));
+        memcpy(cwd + len, "/.fig", 6);
 
         puts("Opening program conf...");
-        if ((fd = open(cwd, O_RDWR)) == -1 && errno == EACCES)
+        if (((fd = open(cwd, O_RDWR)) == -1) && (errno == ENOENT))
         {
             l_retry_prompt:
 
             puts("File does not exist!");
-            puts("Would you like to create it? [Y/n]:\n");
+            puts("Would you like to create it? [Y/n]:");
 
-            res = fgetc(stdin);
+            char* res;
+            size_t res_len;
+            getline(&res, &res_len, stdin);
 
-            switch (res)
+            switch (tolower(res[0]))
             {
                 case 'y':
-                case 'Y':
                 case '\n':
                     fd = open(cwd, O_RDWR | O_CREAT);
+                    printf("\nConf created at %s", cwd);
 
-                    // TODO: Add functionality
+                    // TODO: Make program conf
 
                     break;
 
                 case 'n':
-                case 'N':
                     puts("Exiting...");
+                    free(res);
+                    free(cwd);
                     die(0);
                     break;
 
@@ -60,10 +63,14 @@ int main(int argc, char* argv[])
                     goto l_retry_prompt;
             }
 
+            free(res);
+        } else
+        {
+            printf("\nConf found at %s", cwd);
+            // TODO: Read program conf
 
+            puts("Opening user conf...");
         }
-
-
 
         break;
 

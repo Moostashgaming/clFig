@@ -27,7 +27,7 @@ struct flag_data
     enum mode exec_mode;
 };
 
-struct flag_data data;
+extern struct flag_data data;
 
 error_t parse(int argc, char* argv[], struct flag_data * f_data);
 

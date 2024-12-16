@@ -11,6 +11,8 @@
 #define SPECIFYCONF_FLAG 'c'
 #define DEFAULTCONF_FLAG '1'
 
+struct flag_data data;
+
 static error_t parse_opt(int key, char* arg, struct argp_state* state)
 {
     struct flag_data* f_data = state->input;
@@ -20,8 +22,6 @@ static error_t parse_opt(int key, char* arg, struct argp_state* state)
 
     switch (key)
     {
-    // TODO: Remove debugging puts
-    // TODO: Allocate space for enums
 
     case SPECIFYCONF_FLAG:
         // If it's the first argument, allocate initial memory, otherwise allocate one more enum worth of space
@@ -67,7 +67,6 @@ static error_t parse_opt(int key, char* arg, struct argp_state* state)
                 f_data->exec_mode = NONE;
                 return ARGP_ERR_UNKNOWN;
         }
-
         break;
 
     default:
@@ -89,7 +88,7 @@ static const struct argp_option argp_opts[] =
     {0, ARGP_HELP_PRE_DOC, 0, 0, "\n\rList of available flags:\n", 2},
     {"specify-config", SPECIFYCONF_FLAG, "path", 0, "Specify a path to the config file. Default is whatever directory the user is in on runtime under the name .fig for program config, and .ufig for user config.", 2},
     {"create-default-config", DEFAULTCONF_FLAG, "path", OPTION_ARG_OPTIONAL, "Creates a default configuration at PATH if specified. Otherwise create a default config wherever the user is.", 2},
-    {0}
+    { 0 }
 };
 
 static const struct argp argp_parser = {
